@@ -65,7 +65,7 @@ Future<bool> registerWxApi(
     {required String appId,
     bool doOnIOS: true,
     bool doOnAndroid: true,
-    String? universalLink}) async {
+    String universalLink}) async {
   if (doOnIOS && Platform.isIOS) {
     if (universalLink == null ||
         universalLink.trim().isEmpty ||
@@ -83,7 +83,7 @@ Future<bool> registerWxApi(
 }
 
 // get ext Message
-Future<String?> getExtMsg() async {
+Future<String> getExtMsg() async {
   return await _channel.invokeMethod("getExtMsg");
 }
 
@@ -120,7 +120,7 @@ Future<bool> sendWeChatAuth(
 /// see [WXMiniProgramType]
 Future<bool> launchWeChatMiniProgram(
     {required String username,
-    String? path,
+    String path,
     WXMiniProgramType miniProgramType = WXMiniProgramType.RELEASE}) async {
   assert(username.trim().isNotEmpty);
   return await _channel.invokeMethod("launchMiniProgram", {
@@ -141,8 +141,8 @@ Future<bool> payWithWeChat(
     required String nonceStr,
     required int timeStamp,
     required String sign,
-    String? signType,
-    String? extData}) async {
+    String signType,
+    String extData}) async {
   return await _channel.invokeMethod("payWithFluwx", {
     "appId": appId,
     "partnerId": partnerId,
@@ -169,7 +169,7 @@ Future<bool> subscribeWeChatMsg({
   required String appId,
   required int scene,
   required String templateId,
-  String? reserved,
+  String reserved,
 }) async {
   return await _channel.invokeMethod(
     "subscribeMsg",
@@ -223,7 +223,7 @@ Future<bool> authWeChatByQRCode(
     required String nonceStr,
     required String timeStamp,
     required String signature,
-    String? schemeData}) async {
+    String schemeData}) async {
   assert(appId.isNotEmpty);
   assert(scope.isNotEmpty);
   assert(nonceStr.isNotEmpty);

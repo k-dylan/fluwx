@@ -42,7 +42,7 @@ class WeChatFile {
   final String suffix;
 
   /// [source] must begin with http or https
-  WeChatFile.network(String source, {String? suffix})
+  WeChatFile.network(String source, {String suffix})
       : assert(source.startsWith("http")),
         this.source = source,
         this.schema = FileSchema.NETWORK,
@@ -50,7 +50,7 @@ class WeChatFile {
 
   ///[source] path of the image, like '/asset/image.pdf?package=flutter',
   ///the query param package in [source] only available when you want to specify the package of image
-  WeChatFile.asset(String source, {String? suffix})
+  WeChatFile.asset(String source, {String suffix})
       : assert(source.trim().isNotEmpty),
         this.source = source,
         this.schema = FileSchema.ASSET,
@@ -87,7 +87,7 @@ extension _FileSuffix on String {
   /// returns [suffix] if [suffix] not blank.
   /// If [suffix] is blank, then try to read from url
   /// if suffix in url not found, then return jpg as default.
-  String readSuffix(String? suffix, String defaultSuffix) {
+  String readSuffix(String suffix, String defaultSuffix) {
     if (suffix != null && suffix.trim().isNotEmpty) {
       if (suffix.startsWith(".")) {
         return suffix;
