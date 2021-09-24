@@ -88,9 +88,9 @@ class WeChatShareMiniProgramModel implements WeChatShareBaseModel {
   final bool compressThumbnail;
 
   WeChatShareMiniProgramModel(
-      {required this.webPageUrl,
+      { this.webPageUrl,
       this.miniProgramType = WXMiniProgramType.RELEASE,
-      required this.userName,
+       this.userName,
       this.path: "/",
       this.title,
       this.description,

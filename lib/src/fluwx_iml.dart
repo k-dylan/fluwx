@@ -62,7 +62,7 @@ Future<bool> openWeChatApp() async {
 ///if [doOnAndroid] is true, fluwx will register WXApi on Android.
 /// [universalLink] is required if you want to register on iOS.
 Future<bool> registerWxApi(
-    {required String appId,
+    { String appId,
     bool doOnIOS: true,
     bool doOnAndroid: true,
     String universalLink}) async {
@@ -110,7 +110,7 @@ Future<bool> shareToWeChat(WeChatShareBaseModel model) async {
 /// For more information please visit：
 /// * https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419317851&token=
 Future<bool> sendWeChatAuth(
-    {required String scope, String state = "state"}) async {
+    { String scope, String state = "state"}) async {
   assert(scope.trim().isNotEmpty);
   return await _channel
       .invokeMethod("sendAuth", {"scope": scope, "state": state});
@@ -119,7 +119,7 @@ Future<bool> sendWeChatAuth(
 /// open mini-program
 /// see [WXMiniProgramType]
 Future<bool> launchWeChatMiniProgram(
-    {required String username,
+    { String username,
     String path,
     WXMiniProgramType miniProgramType = WXMiniProgramType.RELEASE}) async {
   assert(username.trim().isNotEmpty);
@@ -134,13 +134,13 @@ Future<bool> launchWeChatMiniProgram(
 /// Read the official document for more detail.
 /// [timeStamp] is int because [timeStamp] will be mapped to Unit32.
 Future<bool> payWithWeChat(
-    {required String appId,
-    required String partnerId,
-    required String prepayId,
-    required String packageValue,
-    required String nonceStr,
-    required int timeStamp,
-    required String sign,
+    { String appId,
+     String partnerId,
+     String prepayId,
+     String packageValue,
+     String nonceStr,
+     int timeStamp,
+     String sign,
     String signType,
     String extData}) async {
   return await _channel.invokeMethod("payWithFluwx", {
@@ -158,7 +158,7 @@ Future<bool> payWithWeChat(
 
 /// request Hong Kong Wallet payment with WeChat.
 /// Read the official document for more detail.
-Future<bool> payWithWeChatHongKongWallet({required String prepayId}) async {
+Future<bool> payWithWeChatHongKongWallet({ String prepayId}) async {
   return await _channel.invokeMethod("payWithHongKongWallet", {
     "prepayId": prepayId,
   });
@@ -166,9 +166,9 @@ Future<bool> payWithWeChatHongKongWallet({required String prepayId}) async {
 
 /// subscribe WeChat message
 Future<bool> subscribeWeChatMsg({
-  required String appId,
-  required int scene,
-  required String templateId,
+   String appId,
+   int scene,
+   String templateId,
   String reserved,
 }) async {
   return await _channel.invokeMethod(
@@ -184,16 +184,16 @@ Future<bool> subscribeWeChatMsg({
 
 /// please read official docs.
 Future<bool> autoDeDuctWeChat(
-    {required String appId,
-    required String mchId,
-    required String planId,
-    required String contractCode,
-    required String requestSerial,
-    required String contractDisplayAccount,
-    required String notifyUrl,
-    required String version,
-    required String sign,
-    required String timestamp,
+    { String appId,
+     String mchId,
+     String planId,
+     String contractCode,
+     String requestSerial,
+     String contractDisplayAccount,
+ String notifyUrl,
+     String version,
+     String sign,
+     String timestamp,
     String returnApp = '3',
     int businessType = 12}) async {
   return await _channel.invokeMethod("autoDeduct", {
@@ -218,11 +218,11 @@ Future<bool> autoDeDuctWeChat(
 /// [schemeData] only works on iOS
 /// see * https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=215238808828h4XN&token=&lang=zh_CN
 Future<bool> authWeChatByQRCode(
-    {required String appId,
-    required String scope,
-    required String nonceStr,
-    required String timeStamp,
-    required String signature,
+    { String appId,
+     String scope,
+     String nonceStr,
+     String timeStamp,
+     String signature,
     String schemeData}) async {
   assert(appId.isNotEmpty);
   assert(scope.isNotEmpty);
@@ -254,12 +254,12 @@ Future _methodHandler(MethodCall methodCall) {
 
 ///IOS only
 Future<bool> authWeChatByPhoneLogin(
-    {required String scope, String state = "state"}) async {
+    { String scope, String state = "state"}) async {
   return await _channel
       .invokeMethod("authByPhoneLogin", {"scope": scope, "state": state});
 }
 
-Future<bool> openWeChatCustomerServiceChat({required String url, required String corpId}) async {
+Future<bool> openWeChatCustomerServiceChat({ String url,  String corpId}) async {
   return await _channel
       .invokeMethod("openWeChatCustomerServiceChat", {"corpId": corpId, "url": url});
 }
